@@ -14,7 +14,7 @@ router.get('/:id', users.findOne)
 //  @route      POST /api/users
 //  @access     public
 //  @desc       Create new user
-router.post('/', users.addUser)
+router.post('/cadastre-se', users.addUser)
 
 //  @route      PUT /api/users/:id
 //  @access     public
@@ -25,5 +25,11 @@ router.put('/:id', users.updateUser)
 //  @access     public
 //  @desc       Delete User Account
 router.delete('/:id', users.deleteUser)
+
+// -- LOGIN ROUTE -- //
+//  @route      POST /api/users/login
+//  @access     public
+//  @desc       Login User
+router.post('/login', users.loginUser)
 
 module.exports = router

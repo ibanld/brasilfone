@@ -127,3 +127,26 @@ exports.deleteUser = async (req,res) => {
         return res.send({message: err.message})
     }
 }
+
+exports.loginUser = async (req,res) => {
+    try {
+        const { email, password } = req.body
+        // We look if the Email is in the DB
+        const findUser = await User.findOne( { where: {email: email }})
+        if (findUser) {
+            // If the Email is registered we check the password
+            const checkPassword = bcrypt.compareSync(password, findUser.senha)
+            if (checkPassword) {
+                // If the password is correct we authenticate the User
+                return res.send({ message: 'Bem-vindo' })
+            } else {
+               return res.send({ message: 'Senha Errada. Tenta de Novo' })
+            }
+        } else {
+            // If the Email isn't registered in the DB, we send the redirect property so the Front-End activates/redirects to Register Form/Page
+            return res.send({ message: `O E-Mail ${email} nao está cadastrado`, redirect: true })
+        }
+    } catch (err) {
+        return res.send({message: err.message})
+    }
+}
