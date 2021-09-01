@@ -1,0 +1,22 @@
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+
+const app = express()
+
+// Init Cors
+const corsOptions = {
+    origin = "http://localhost5001"
+}
+
+app.use(cors(corsOptions))
+
+// Init body parser
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Routes
+
+const PORT = (process.env.PORT || 5000)
+
+app.listen(PORT, () => console.log(`Server up and running at PORT ${5000}`))
