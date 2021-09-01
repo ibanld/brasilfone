@@ -90,11 +90,22 @@ exports.updateUser = async (req, res) => {
                     return res.send({ message: 'E-Mail foi atualizado' })
                 }
             case 'UPDATE_PASSWORD':
-                const hash = bcrypt.hashSync(payload, 10)
-                const password = {senha: hash}
-                const updatePassword = await User.update(password, { where: { id: id } })
-                if (updatePassword) {
-                    return res.send({ message: 'Senha foi atualizada' })
+                // We receive the actual password and the password to update
+                const { newPassword, oldPassword } = payload
+                // We retrieve our user from the DB
+                const userToUpdate = await User.findByPk(id)
+                // Using Bcrypt we compare both passwords
+                const checkPassword = bcrypt.compareSync(oldPassword, userToUpdate.senha)
+                // If passwords match we update new password into DB
+                if (checkPassword) {
+                    const hash = bcrypt.hashSync(newPassword, 10)
+                    const password = {senha: hash}
+                    const updatePassword = await User.update(password, { where: { id: id } })
+                    if (updatePassword) {
+                        return res.send({ message: 'Senha foi atualizada' })
+                    }
+                } else {
+                    return res.send({ message: 'Senha Errada' })
                 }
             default:
                 return res.send({ message: `${action} unknown!` })
