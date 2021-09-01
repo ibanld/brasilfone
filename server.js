@@ -6,7 +6,7 @@ const app = express()
 
 // Init Cors
 const corsOptions = {
-    origin = "http://localhost5001"
+    origin: "http://localhost:5001"
 }
 
 app.use(cors(corsOptions))
@@ -16,6 +16,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Routes
+app.get('/', (req, res) => res.send('Hello World'))
 
 const PORT = (process.env.PORT || 5000)
 
