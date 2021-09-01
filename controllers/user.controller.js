@@ -5,12 +5,12 @@ exports.findAll = async (req, res) => {
     try {
         const users = await User.findAll()
         if (!users) {
-            res.send({message: 'Nao foram achados usuários'})
+          return  res.send({message: 'Nao foram achados usuários'})
         } else {
-            res.send(JSON.stringify(users))
+          return  res.send(users)
         }
     } catch (err) {
-        res.send({message: 'There was an error retrieving all Users'})
+       return res.send({message: 'There was an error retrieving all Users'})
     }
 }
 
@@ -19,32 +19,47 @@ exports.findOne = async (req, res) => {
         const id = req.params.id
         const user = await User.findByPk(id)
         if (!user) {
-            res.send({ message: `Nao foi achado nenhum usuário com ID ${id}` })
+           return res.send({ message: `Nao foi achado nenhum usuário com ID ${id}` })
         } else {
-            res.send(user)
+           return res.send(user)
         }
     } catch (err) {
-        res.send({message: 'There was an error retrieving the User'})
+      return res.send({message: 'There was an error retrieving the User'})
     }
 }
 
 exports.addUser = async (req, res) => {
     try {
         const { email, password } = req.body
-        if (email && password) {
-           const hash = bcrypt.hashSync(password, 10)
-           const saveUser = await User.create({
-               email: email,
-               senha: hash
-           })
-            if (saveUser) {
-                return res.send({ message: `User with E-Mail: ${email} was created` })
-            }
-        } else {
-            res.send({ message: 'Some field(s) is/are missing' })
+        if (!email) {
+           return res.send({ message: 'Email is missing' })
+        }
+        if (!password) {
+            return res.send({ message: 'Password is missing' })
         }
 
+        if (email && password) {
+            // Check if user is already in the database
+            const myUser = await User.findOne({ email: email })
+            if (myUser) {
+                return res.send({ message: `User with E-Mail ${email} already exists`})
+            } else {
+                // Encrypt User password before saving
+                const hash = bcrypt.hashSync(password, 10)
+                // Save User into DB
+                const saveUser = await User.create({
+                   email: email,
+                   senha: hash
+                })
+                // Inform User was created
+                if (saveUser) {
+                    return res.send({ message: `User with E-Mail: ${email} was created` })
+                }
+            }
+        } 
+
     } catch (err) {
-        res.send({message: err.message})
+       return res.send({message: err.message})
     }
 }
+
