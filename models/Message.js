@@ -1,8 +1,8 @@
-const { Datatypes } = require('sequelize')
-const db = require('./config/db')
+const { DataTypes } = require('sequelize')
+const connect = require('../config/connect')
 const User = require('./User')
 
-const Message = db.define('Message',{
+const Message = connect.define('Message',{
     // Model fields
     id: { 
         type: DataTypes.UUID, 
@@ -10,11 +10,11 @@ const Message = db.define('Message',{
         primaryKey: true
     },
     title: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     content: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     userId: {

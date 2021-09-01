@@ -1,24 +1,19 @@
-const { Datatypes } = require('sequelize')
-const db = require('./config/db')
+const { DataTypes } = require('sequelize')
+const connect = require('../config/connect')
 
-const User = db.define('User', {
+const User = connect.define('User', {
     // Model fields
-    id: { 
-        type: DataTypes.INTENGER, 
-        primaryKey: true,
-        autoIncrement: true
-    },
     email: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     senha: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     }
 }, {
     // Connect to database
-    db,
+    connect,
     // This connects the model to an already existing table 
     tableName: 'usuarios'
 })
