@@ -1,15 +1,14 @@
 const { Sequelize } = require('sequelize')
 const User = require('../models/User')
-const Message = require('../models/Message')
+const Session = require('../models/Session')
 
 // Connect to Database
 const db = async () => {
   const sequelize = new Sequelize(process.env.DB_URL)
     try {
-
-      // Creating all the Tables in case they don't exist in the DB
+      // Syncronizing Tables with Database
       await User.sync()
-      await Message.sync()
+      await Session.sync()
 
       // Authenticate database
      const auth =  await sequelize.authenticate()
