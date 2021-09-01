@@ -138,7 +138,7 @@ exports.loginUser = async (req,res) => {
             const checkPassword = bcrypt.compareSync(password, findUser.senha)
             if (checkPassword) {
                 // If the password is correct we authenticate the User
-                return res.send({ message: 'Bem-vindo' })
+                return res.send(true)
             } else {
                return res.send({ message: 'Senha Errada. Tenta de Novo' })
             }
