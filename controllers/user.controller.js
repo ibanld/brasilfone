@@ -1,6 +1,12 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 
+// Validate E-mail function using RegEx
+const validateMail = email => {
+    const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    const check = emailRegexp.test(email)
+    return check
+}
 exports.findAll = async (req, res) => {
     try {
         const users = await User.findAll()
@@ -40,20 +46,26 @@ exports.addUser = async (req, res) => {
 
         if (email && password) {
             // Check if user is already in the database
-            const myUser = await User.findOne({ email: email })
+            const myUser = await User.findOne({where: { email: email }})
             if (myUser) {
                 return res.send({ message: `User with E-Mail ${email} already exists`})
             } else {
-                // Encrypt User password before saving
-                const hash = bcrypt.hashSync(password, 10)
-                // Save User into DB
-                const saveUser = await User.create({
-                   email: email,
-                   senha: hash
-                })
-                // Inform User was created
-                if (saveUser) {
-                    return res.send({ message: `User with E-Mail: ${email} was created` })
+                // Check if E-Mail provided has a valid format
+                const validEmail = validateMail(email)
+                if (validEmail) {
+                    // Encrypt User password before saving
+                    const hash = bcrypt.hashSync(password, 10)
+                    // Save User into DB
+                    const saveUser = await User.create({
+                       email: email,
+                       senha: hash
+                    })
+                    // Inform User was created
+                    if (saveUser) {
+                        return res.send({ message: `User with E-Mail: ${email} was created` })
+                    }
+                } else {
+                    return res.send({ message: `${email} is not a valid E-Mail!` })
                 }
             }
         } 
