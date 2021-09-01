@@ -1,10 +1,13 @@
-const { Sequelize, Datatypes, Model } = require('sequelize')
+const { Datatypes } = require('sequelize')
 const db = require('./config/db')
 
-class User extends Model {}
-
-User.init({
+const User = db.define({
     // Model fields
+    id: { 
+        type: DataTypes.INTENGER, 
+        primaryKey: true,
+        autoIncrement: true
+    },
     email: {
         type: Datatypes.STRING,
         allowNull: false
@@ -19,3 +22,6 @@ User.init({
     // This connects the model to the Table 
     tableName: 'usuarios'
 })
+
+module.exports = User
+
