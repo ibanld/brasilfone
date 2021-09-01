@@ -63,3 +63,44 @@ exports.addUser = async (req, res) => {
     }
 }
 
+exports.updateUser = async (req, res) => {
+    try {
+        // We receive the user Id from the params /api/users/:id
+        const id = req.params.id
+        // Action: what are we going to update?
+        // Payload: the new value we are saving
+        const { action, payload } = req.body
+        switch (action) {
+            case 'UPDATE_EMAIL':
+                const email = { email: payload }
+                const updateEmail = await User.update(email, {where: { id: id } })
+                if (updateEmail) {
+                    return res.send({ message: 'E-Mail foi atualizado' })
+                }
+            case 'UPDATE_PASSWORD':
+                const hash = bcrypt.hashSync(payload, 10)
+                const password = {senha: hash}
+                const updatePassword = await User.update(password, { where: { id: id } })
+                if (updatePassword) {
+                    return res.send({ message: 'Senha foi atualizada' })
+                }
+            default:
+                return res.send({ message: `${action} unknown!` })
+        }
+
+    } catch (err) {
+        return res.send({message: err.message})
+    }
+}
+
+exports.deleteUser = async (req,res) => {
+    try {
+        const id = req.params.id
+        const delUser = await User.destroy({ where: { id: id } })
+        if (delUser) {
+            return res.send({ message: 'User was Deleted' })
+        }
+    } catch (err) {
+        return res.send({message: err.message})
+    }
+}
