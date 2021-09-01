@@ -2,7 +2,7 @@ const { Datatypes } = require('sequelize')
 const db = require('./config/db')
 const User = require('./User')
 
-const Message = db.define({
+const Message = db.define('Message',{
     // Model fields
     id: { 
         type: DataTypes.UUID, 

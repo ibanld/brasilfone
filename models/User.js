@@ -1,7 +1,7 @@
 const { Datatypes } = require('sequelize')
 const db = require('./config/db')
 
-const User = db.define({
+const User = db.define('User', {
     // Model fields
     id: { 
         type: DataTypes.INTENGER, 
