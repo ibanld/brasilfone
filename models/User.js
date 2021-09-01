@@ -19,7 +19,7 @@ const User = db.define({
 }, {
     // Connect to database
     db,
-    // This connects the model to the Table 
+    // This connects the model to an already existing table 
     tableName: 'usuarios'
 })
 
