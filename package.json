@@ -1,0 +1,19 @@
+{
+  "name": "brasilfone_challenge",
+  "version": "1.0.0",
+  "description": "challenge to apply for Brasilfone ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "keywords": [
+    "js",
+    "node",
+    "brasilfone",
+    "challenge",
+    "crud"
+  ],
+  "author": "Iban Lopez",
+  "license": "MIT"
+}
