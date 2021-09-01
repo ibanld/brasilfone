@@ -4,8 +4,7 @@ const { Sequelize } = require('sequelize')
 const db = async () => {
     const sequelize = new Sequelize(process.env.DB_URL)
     try {
-      // Change FORCE to ALTER in production mode
-        await sequelize.sync({ force: true })
+        await sequelize.sync()
         await sequelize.authenticate()
         console.log('Connection has been established successfully.')
       } catch (error) {
