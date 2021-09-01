@@ -15,7 +15,7 @@ const User = connect.define('User', {
     // Connect to database
     connect,
     // This connects the model to an already existing table 
-    tableName: 'usuarios'
+    tableName: 'Usuarios'
 })
 
 module.exports = User

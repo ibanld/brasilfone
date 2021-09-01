@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize')
 const connect = require('../config/connect')
 const User = require('./User')
 
@@ -28,7 +28,7 @@ const Message = connect.define('Message',{
       },
 }, {
     // Connect to database
-    db,
+    connect,
     // Name of the table in the database
     modelName: 'Message'
 })
