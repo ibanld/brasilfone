@@ -5,9 +5,8 @@ const db = require('./config/db')
 require('dotenv').config()
 
 const app = express()
-
-// Connect to Database
-db()
+ // Connect to database
+ db()
 
 // Init Cors
 const corsOptions = {
