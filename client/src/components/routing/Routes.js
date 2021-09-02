@@ -8,9 +8,8 @@ function Routes() {
     return (
         <>
         <Switch>
-        <Route exact path='/' component={LandingPage} />
+            <Route exact path='/' component={LandingPage} />
             <AuthRoute exact path='/dashboard' component={Dashboard} />
-            <AuthRoute exact path='/dashboard/:section' component={Dashboard} />
         </Switch>
         </>
     )
