@@ -17,7 +17,7 @@ function LoginForm() {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            
+            console.log(loginForm)
         } catch (err) {
             console.error(err)
         }
@@ -25,9 +25,13 @@ function LoginForm() {
 
     return (
         <Form onSubmit={e => handleSubmit(e)}> 
-            <Input type="email" name="email" icon="user outline" iconPosition="left"  value={loginForm.email} required inverted onChange={ e => handleChange(e) } />
-            <Input type="password" name="password" icon="lock" iconPosition="left"  value={loginForm.password} required inverted onChange={ e => handleChange(e) } />
-            <Button positive type='submit' icon="send" content="Façer Login" compact />
+            <Form.Input>
+                <Input type="email" name="email" icon="user" iconPosition="left" placeholder="E-Mail"  value={loginForm.email} required inverted onChange={ e => handleChange(e) } />
+            </Form.Input>
+            <Form.Input>
+                <Input type="password" name="password" icon="lock" iconPosition="left" placeholder="Senha"  value={loginForm.password} required inverted onChange={ e => handleChange(e) } />
+            </Form.Input>
+                <Button positive fluid type='submit' icon="send" content="Façer Login" compact />
         </Form>
     )
 }
