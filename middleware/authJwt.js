@@ -10,10 +10,12 @@ verifyToken = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        if (req.user = decoded.user) {
+        if (req.email = decoded.email) {
             next()
         }
     } catch (err) {
         res.send({ msg: err.message || 'Token is not valid' })
     }
 }
+
+module.exports = verifyToken
