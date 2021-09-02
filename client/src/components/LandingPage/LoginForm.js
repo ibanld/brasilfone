@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Form, Button, Input } from 'semantic-ui-react'
 import { useAuth, useDispatchAuth } from '../../context/authContext'
+import { useDispatchAlert } from '../../context/alertContext'
 import {  Redirect } from 'react-router-dom'
 import API from '../../utils/axios'
 
@@ -11,6 +12,7 @@ function LoginForm() {
     })
 
     const dispatchAuth = useDispatchAuth()
+    const dispatchAlert = useDispatchAlert()
     const { isLogged } = useAuth()
 
     const handleChange = e => {
@@ -35,9 +37,38 @@ function LoginForm() {
                                 token: setToken.data
                             }
                         })
+                        dispatchAlert({
+                            type: 'SHOW_ALERT',
+                            payload: {
+                                color: 'green',
+                                icon: 'thumbs up',
+                                header: 'Login foi Certo!', 
+                                content: `Oi! ${loginForm.email}, Tudo bem?`,
+    
+                            }
+                        })
+                        setTimeout( () => {
+                            dispatchAlert({
+                                type: 'HIDE_ALERT'
+                            })
+                        }, 3000)
                     }
                 } else {
-                    console.log(res.data.message)
+                    dispatchAlert({
+                        type: 'SHOW_ALERT',
+                        payload: {
+                            color: 'red',
+                            icon: 'thumbs down',
+                            header: 'Algo nao foi certo!', 
+                            content: res.data.message,
+
+                        }
+                    })
+                    setTimeout( () => {
+                        dispatchAlert({
+                            type: 'HIDE_ALERT'
+                        })
+                    }, 3000)
                 }
             }
         } catch (err) {

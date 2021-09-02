@@ -7,9 +7,8 @@ export default function Alert() {
     return (
         <Message 
             floating
-            attached="top"
             size="big"
-            visible={showMe} 
+            hidden={showMe} 
             color={color} 
             icon={icon} 
             header={header} 

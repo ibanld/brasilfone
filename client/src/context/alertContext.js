@@ -4,7 +4,7 @@ const AlertStateContext = createContext()
 const AlertDispatchContext = createContext()
 
 const initialState = {
-    showMe: false,
+    showMe: true,
     icon: '',
     header: '',
     content: '',
@@ -16,12 +16,12 @@ const reducer = (state = initialState, action) => {
         case 'HIDE_ALERT':
             return {
                 ...initialState,
-                showMe: false
+                showMe: true
             }
         case 'SHOW_ALERT': 
             return {
                 ...state,
-                showMe: true, 
+                showMe: false, 
                 icon: action.payload.icon,
                 header: action.payload.header,
                 content: action.payload.content,

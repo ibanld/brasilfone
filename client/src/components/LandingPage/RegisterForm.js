@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Form, Input, Button } from 'semantic-ui-react'
 import API from '../../utils/axios'
 import checkPassword from '../../utils/checkPassword'
+import { useDispatchAlert } from '../../context/alertContext'
 
 function RegisterForm() {
     const [registerForm, setRegisterForm] = useState({
@@ -9,6 +10,8 @@ function RegisterForm() {
         password: '',
         repeatPassword: ''
     })
+
+    const dispatchAlert = useDispatchAlert()
 
     const handleChange = e => {
         setRegisterForm({
@@ -24,14 +27,43 @@ function RegisterForm() {
             if (passwordChecked) {
                 const res = await API.post('users/cadastre-se', registerForm)
                 if (res) {
-                    console.log(res.data)
                     setRegisterForm({
                         email: '',
                         password: '',
                         repeatPassword: ''
                     })
+                    dispatchAlert({
+                        type: 'SHOW_ALERT',
+                        payload: {
+                            color: 'teal',
+                            icon: 'info circle',
+                            header: 'Cadastre-se', 
+                            content: res.data,
+
+                        }
+                    })
+                    setTimeout( () => {
+                        dispatchAlert({
+                            type: 'HIDE_ALERT'
+                        })
+                    }, 3000)
                 }
             } else {
+                dispatchAlert({
+                    type: 'SHOW_ALERT',
+                    payload: {
+                        color: 'red',
+                        icon: 'close',
+                        header: 'Senha Errada!', 
+                        content: 'As senhas nao concordam',
+
+                    }
+                })
+                setTimeout( () => {
+                    dispatchAlert({
+                        type: 'HIDE_ALERT'
+                    })
+                }, 3000)
                 console.log('Passwords dont match')
             }
         } catch (error) {
