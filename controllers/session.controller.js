@@ -1,32 +1,13 @@
-const Session = require('../models/Session')
-
-exports.getAll = async (req, res) => {
-    try {
-        
-    } catch (err) {
-        return res.send({message: ''})
-    }
-}
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 exports.newSession = async (req, res) => {
     try {
-        
-    } catch (err) {
-        return res.send({message: ''})
-    }
-}
-
-exports.deleteUserSessions = async (req, res) => {
-    try {
-        
-    } catch (err) {
-        return res.send({message: ''})
-    }
-}
-
-exports.deleteAll = async (req, res) => {
-    try {
-        
+        const email = req.body.email
+        const token = await jwt.sign({ email: email }, process.env.JWT_SECRET)
+        if (token) {
+            return res.send(token)
+        }
     } catch (err) {
         return res.send({message: ''})
     }

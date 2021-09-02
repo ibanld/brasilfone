@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Routes
 app.get('/', (req, res) => res.send('Hello World'))
 app.use('/api/users', require('./routes/api/user.route'))
+app.use('/api/auth', require('./routes/api/auth.route'))
 
 const PORT = (process.env.PORT || 5000)
 

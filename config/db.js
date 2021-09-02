@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize')
 const User = require('../models/User')
-const Session = require('../models/Session')
 
 // Connect to Database
 const db = async () => {
@@ -8,7 +7,6 @@ const db = async () => {
     try {
       // Syncronizing Tables with Database
       await User.sync()
-      await Session.sync()
 
       // Authenticate database
      const auth =  await sequelize.authenticate()
