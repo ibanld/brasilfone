@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react'
-import { Container, Statistic, Divider, Form, Input, Button } from 'semantic-ui-react'
+import { Container, Statistic, Divider, Form, Input, Button, Header } from 'semantic-ui-react'
 import { useAuth } from '../../context/authContext'
+import Moment from 'react-moment'
 import API from '../../utils/axios'
+import checkPassword from '../../utils/checkPassword'
 
 export default function Account() {
     const [passForm, setPassForm] = useState({
         action: 'UPDATE_PASSWORD',
         payload: {
             oldPassword: '',
-            newPassword: ''
+            newPassword: '',
+            newPassword2:''
         }
     })
     const [user, setUser] = useState({})
+
     const { email, token } = useAuth()
 
     const handleChange = e => {
@@ -27,9 +31,25 @@ export default function Account() {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            const res = await API.put(`users/${user.id}`, passForm)
+            const areEqual = checkPassword(passForm.payload.newPassword, passForm.payload.newPassword2)
+            if (areEqual) {
+                const res = await API.put(`users/${user.id}`, passForm, {headers: {'x-auth-token': token}})
+                if (res) {
+                    console.log(res.data)
+                }
+            } else {
+                console.log('Passwords dont match')
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const handleDelete = async () => {
+        try {
+            const res = await API.delete(`users/${user.id}`, {headers: {'x-auth-token': token}})
             if (res) {
-                console.log(res.data)
+                console.log(res.data.message)
             }
         } catch (err) {
             console.error(err)
@@ -51,7 +71,7 @@ export default function Account() {
 
     return (
         <Container text textAlign="center">
-            {Object.keys(user).lenght < 0 ? 'Carregando...' : 
+            {Object.keys(user).length < 0 ? 'Carregando...' : 
                 <Statistic.Group size="mini" inverted text="center">
                     <Statistic>
                         <Statistic.Label>Seu Id: </Statistic.Label>
@@ -63,7 +83,7 @@ export default function Account() {
                     </Statistic>
                     <Statistic>
                         <Statistic.Label>Data registro: </Statistic.Label>
-                        <Statistic.Value>{user.createdAt}</Statistic.Value>
+                        <Statistic.Value><Moment format="DD/MM/YYYY">{user.createdAt}</Moment></Statistic.Value>
                     </Statistic>
                     <Statistic>
                         <Statistic.Label>Auth Token: </Statistic.Label>
@@ -73,15 +93,19 @@ export default function Account() {
             }
             <Divider inverted />
             <Form onSubmit={ e => handleSubmit(e)}>
-                <p>Atualizar Senha</p>
+                <Header inverted>Atualizar Senha</Header>
                 <Form.Group>
                     <Input type="password" name="oldPassword" value={passForm.oldPassword} placeholder="Senha Atual" inverted  onChange={handleChange} />
                 </Form.Group>
                 <Form.Group>
                     <Input type="password" name="newPassword" value={passForm.newPassword} placeholder="Senha Nova" inverted  onChange={handleChange} />
+                    <Input type="password" name="newPassword2" value={passForm.newPassword2} placeholder="Repetir Senha Nova" inverted  onChange={handleChange} />
                 </Form.Group>
-                <Button positive  type="submit" icon="send" content="Atualizar Senha" />
+                <Button positive type="submit" icon="send" content="Atualizar Senha" />
             </Form>
+            <Divider inverted />
+            <Header inverted>Excluir Conta</Header>
+            <Button negative fluid icon="trash" content="Exlcuir Conta" onClick={handleDelete} />
         </Container>
     )
 }

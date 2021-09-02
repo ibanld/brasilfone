@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Form, Input, Button } from 'semantic-ui-react'
 import API from '../../utils/axios'
+import checkPassword from '../../utils/checkPassword'
 
 function RegisterForm() {
     const [registerForm, setRegisterForm] = useState({
@@ -15,13 +16,7 @@ function RegisterForm() {
             [e.target.name]: e.target.value
         })
     }
-    const checkPassword = (pass1, pass2) => {
-        if (pass1 === pass2) {
-            return true
-        } else {
-            return false
-        }
-    }
+    
     const handleSubmit = async e => {
         e.preventDefault()
         try {
