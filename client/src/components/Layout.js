@@ -35,7 +35,7 @@ export default function Layout({ children }) {
                 </Menu.Item>
                 {isLogged && 
                     <Menu.Item>
-                        <Button icon="sign-out" content="Fechar" inverted onClick={logOut} />
+                        <Button icon="sign-out" content="Fechar" inverted compact onClick={logOut} />
                     </Menu.Item>
                 }
             </Menu>
