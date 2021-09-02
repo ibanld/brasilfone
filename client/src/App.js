@@ -1,7 +1,11 @@
+import LandingPage from './components/LandingPage/LandingPage'
+import Layout from './components/Layout';
 
 function App() {
   return (
-    <h1>Hello World!</h1>
+      <Layout>
+        <LandingPage />
+      </Layout>
   )
 }
 
