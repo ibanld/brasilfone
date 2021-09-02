@@ -1,17 +1,10 @@
 import Layout from './components/Layout'
-import LandingPage from './components/LandingPage'
-import Dashboard from './components/Dashboard'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Routes from './components/routing'
 
 function App() {
   return (
       <Layout>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/dashboard" component={Dashboard} />
-          </Switch>
-        </Router>
+        <Routes />
       </Layout>
   )
 }
