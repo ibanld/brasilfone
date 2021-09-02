@@ -19,13 +19,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 email: payload.email,
-                id: payload.id,
-                createdAt: payload.createdAt
-            }
-        case 'SET_TOKEN':
-            return {
-                ...state,
-                token: payload,
+                token: payload.token,
                 isLogged: true,
                 loading: false
             }

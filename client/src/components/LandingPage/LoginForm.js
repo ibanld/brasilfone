@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Form, Button, Input } from 'semantic-ui-react'
+import { useAuth, useDispatchAuth } from '../../context/authContext'
+import {  Redirect } from 'react-router-dom'
 import API from '../../utils/axios'
 
 function LoginForm() {
@@ -7,6 +9,9 @@ function LoginForm() {
         email: '',
         password: ''
     })
+
+    const dispatchAuth = useDispatchAuth()
+    const { isLogged } = useAuth()
 
     const handleChange = e => {
         setLoginForm({
@@ -23,10 +28,12 @@ function LoginForm() {
                 if (res.data === true) {
                     const setToken = await API.post('auth', { email: loginForm.email })
                     if (setToken) {
-                        console.log(setToken.data)
-                        setLoginForm({
-                            email: '',
-                            password: ''
+                        dispatchAuth({
+                            type: 'LOG_IN',
+                            payload: {
+                                email: loginForm.email,
+                                token: setToken.data
+                            }
                         })
                     }
                 } else {
@@ -39,6 +46,7 @@ function LoginForm() {
     }
 
     return (
+        <>
         <Form onSubmit={e => handleSubmit(e)}> 
             <Form.Input>
                 <Input type="email" name="email" icon="user" iconPosition="left" placeholder="E-Mail"  value={loginForm.email} required inverted onChange={ e => handleChange(e) } />
@@ -48,6 +56,10 @@ function LoginForm() {
             </Form.Input>
                 <Button positive fluid type='submit' icon="send" content="Fazer Login" compact />
         </Form>
+        {isLogged && 
+            <Redirect to="/dashboard" />
+        }
+        </>
     )
 }
 
