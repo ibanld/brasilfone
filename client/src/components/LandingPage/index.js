@@ -11,7 +11,7 @@ const LandingPage = () => {
     const [view, setView] = useState(true)
 
     return (
-            <Segment raised centered style={style} color="black"> 
+            <Segment raised style={style} color="black"> 
                     {view ? <LoginForm /> : <RegisterForm /> }
                 <Divider />
                 <Button 
