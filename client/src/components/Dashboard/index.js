@@ -1,10 +1,5 @@
 import React from 'react'
-import { Switch, BrowserRouter as Router, Link } from 'react-router-dom'
-import AuthRoute from '../routing/AuthRoute'
-import Account from './Account'
-import Users from './Users'
-import RoutesDesc from './RoutesDesc'
-import Guide from './Guide'
+import { Link } from 'react-router-dom'
 import { Segment, Icon, Header } from 'semantic-ui-react'
 
 const container = {
@@ -20,7 +15,6 @@ const style = {
 
 function Dashboard() {
     return (
-        <Router>
             <div style={container}>
                 <Segment placeholder raised color="green" padded size="huge" textAlign="center" style={style}>
                     <Link to="/dashboard/account">
@@ -55,13 +49,6 @@ function Dashboard() {
                     </Link>
                 </Segment>
             </div>
-            <Switch>
-                <AuthRoute exact path="/dashboard/account" component={Account} />
-                <AuthRoute exact path="/dashboard/users" component={Users} />
-                <AuthRoute exact path="/dashboard/routes" component={RoutesDesc} />
-                <AuthRoute exact path="/dashboard/guide" component={Guide} />
-            </Switch>
-        </Router>
     )
 }
 
