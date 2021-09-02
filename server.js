@@ -11,7 +11,7 @@ const app = express()
 
 // Init Cors
 const corsOptions = {
-    origin: "http://localhost:5001"
+    origin: "http://localhost:3000"
 }
 
 app.use(cors(corsOptions))

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Form, Button, Input } from 'semantic-ui-react'
+import API from '../../utils/axios'
 
 function LoginForm() {
     const [loginForm, setLoginForm] = useState({
@@ -17,7 +18,10 @@ function LoginForm() {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            console.log(loginForm)
+            const res = API.post('users/login', loginForm)
+            if (res) {
+                console.log(res.data)
+            }
         } catch (err) {
             console.error(err)
         }
