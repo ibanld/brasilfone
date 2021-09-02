@@ -1,10 +1,13 @@
+import { BrowserRouter as Router } from 'react-router-dom'
 import Layout from './components/Layout'
-import Routes from './components/routing'
+import Routes from './components/routing/Routes'
 
 function App() {
   return (
       <Layout>
-        <Routes />
+        <Router>
+          <Routes />
+        </Router>
       </Layout>
   )
 }
