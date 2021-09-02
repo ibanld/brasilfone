@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Container, Statistic, Form, Input, Button, Header, Grid } from 'semantic-ui-react'
-import { useAuth } from '../../context/authContext'
-import { Link } from 'react-router-dom'
+import { useAuth, useDispatchAuth } from '../../context/authContext'
+import { Link, Redirect } from 'react-router-dom'
 import Moment from 'react-moment'
 import API from '../../utils/axios'
+import { useDispatchAlert } from '../../context/alertContext'
 import checkPassword from '../../utils/checkPassword'
 
 export default function Account() {
@@ -17,7 +18,9 @@ export default function Account() {
     })
     const [user, setUser] = useState({})
 
-    const { email, token } = useAuth()
+    const { email, token, isLogged } = useAuth()
+    const dispatchAlert = useDispatchAlert()
+    const dispatchAuth = useDispatchAuth()
 
     const handleChange = e => {
         setPassForm({
@@ -36,10 +39,38 @@ export default function Account() {
             if (areEqual) {
                 const res = await API.put(`users/${user.id}`, passForm, {headers: {'x-auth-token': token}})
                 if (res) {
-                    console.log(res.data)
+                    dispatchAlert({
+                    type: 'SHOW_ALERT',
+                    payload: {
+                        color: 'teal',
+                        icon: 'info circle',
+                        header: 'Mudar Senha', 
+                        content: res.data.message,
+
+                    }
+                })
+                setTimeout( () => {
+                    dispatchAlert({
+                        type: 'HIDE_ALERT'
+                    })
+                }, 3000)
                 }
             } else {
-                console.log('Passwords dont match')
+                dispatchAlert({
+                    type: 'SHOW_ALERT',
+                    payload: {
+                        color: 'red',
+                        icon: 'close',
+                        header: 'Senha Errada!', 
+                        content: 'As senhas nao concordam',
+
+                    }
+                })
+                setTimeout( () => {
+                    dispatchAlert({
+                        type: 'HIDE_ALERT'
+                    })
+                }, 3000)
             }
         } catch (err) {
             console.error(err)
@@ -50,7 +81,25 @@ export default function Account() {
         try {
             const res = await API.delete(`users/${user.id}`, {headers: {'x-auth-token': token}})
             if (res) {
-                console.log(res.data.message)
+                dispatchAlert({
+                    type: 'SHOW_ALERT',
+                    payload: {
+                        color: 'red',
+                        icon: 'close',
+                        header: 'Atençao!', 
+                        content: 'A sua conta foi Excluida!',
+
+                    }
+                })
+                setTimeout( () => {
+                    dispatchAlert({
+                        type: 'HIDE_ALERT'
+                    })
+                    dispatchAuth({
+                        type: 'LOG_OUT'
+                    })
+                }, 3000)
+
             }
         } catch (err) {
             console.error(err)
@@ -122,6 +171,7 @@ export default function Account() {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
+            {!isLogged && <Redirect to="/" />}
         </Container>
     )
 }

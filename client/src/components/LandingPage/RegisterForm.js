@@ -38,7 +38,7 @@ function RegisterForm() {
                             color: 'teal',
                             icon: 'info circle',
                             header: 'Cadastre-se', 
-                            content: res.data,
+                            content: res.data.message,
 
                         }
                     })
@@ -64,7 +64,6 @@ function RegisterForm() {
                         type: 'HIDE_ALERT'
                     })
                 }, 3000)
-                console.log('Passwords dont match')
             }
         } catch (error) {
             
