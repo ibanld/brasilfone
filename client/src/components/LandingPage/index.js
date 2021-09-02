@@ -16,7 +16,7 @@ const LandingPage = () => {
                 <Divider />
                 <Button 
                     color= { view ? 'orange' : 'purple' } 
-                    content={ view ? 'Cadastre-Se' : 'Faça seu Login' } 
+                    content={ view ? 'Cadastre-se' : 'Faça seu Login' } 
                     onClick= { ()=> setView(!view) } 
                     fluid
                 />

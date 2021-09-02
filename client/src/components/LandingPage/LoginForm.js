@@ -46,7 +46,7 @@ function LoginForm() {
             <Form.Input>
                 <Input type="password" name="password" icon="lock" iconPosition="left" placeholder="Senha"  value={loginForm.password} required inverted onChange={ e => handleChange(e) } />
             </Form.Input>
-                <Button positive fluid type='submit' icon="send" content="Façer Login" compact />
+                <Button positive fluid type='submit' icon="send" content="Fazer Login" compact />
         </Form>
     )
 }
