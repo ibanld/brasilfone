@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Container, Statistic, Divider, Form, Input, Button, Header } from 'semantic-ui-react'
+import { Container, Statistic, Form, Input, Button, Header, Grid } from 'semantic-ui-react'
 import { useAuth } from '../../context/authContext'
+import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import API from '../../utils/axios'
 import checkPassword from '../../utils/checkPassword'
@@ -66,46 +67,61 @@ export default function Account() {
     }
 
     useEffect(() => {
-        getUser(email)
+        let isSubscribed = true
+        if (isSubscribed) {
+            getUser(email)
+        }
+        return () => isSubscribed = false
     }, [])
 
     return (
-        <Container text textAlign="center">
-            {Object.keys(user).length < 0 ? 'Carregando...' : 
-                <Statistic.Group size="mini" inverted text="center">
-                    <Statistic>
-                        <Statistic.Label>Seu Id: </Statistic.Label>
-                        <Statistic.Value>{user.id}</Statistic.Value>
-                    </Statistic>
-                    <Statistic>
-                        <Statistic.Label>E-Mail: </Statistic.Label>
-                        <Statistic.Value>{email}</Statistic.Value>
-                    </Statistic>
-                    <Statistic>
-                        <Statistic.Label>Data registro: </Statistic.Label>
-                        <Statistic.Value><Moment format="DD/MM/YYYY">{user.createdAt}</Moment></Statistic.Value>
-                    </Statistic>
-                    <Statistic>
-                        <Statistic.Label>Auth Token: </Statistic.Label>
-                        <Statistic.Value>{`${token.substring(0,50)}...`}</Statistic.Value>
-                    </Statistic>
-                </Statistic.Group>
-            }
-            <Divider inverted />
-            <Form onSubmit={ e => handleSubmit(e)}>
-                <Header inverted>Atualizar Senha</Header>
-                <Form.Group>
-                    <Input type="password" name="oldPassword" value={passForm.oldPassword} placeholder="Senha Atual" inverted  onChange={handleChange} />
-                </Form.Group>
-                <Form.Group>
-                    <Input type="password" name="newPassword" value={passForm.newPassword} placeholder="Senha Nova" inverted  onChange={handleChange} />
-                    <Input type="password" name="newPassword2" value={passForm.newPassword2} placeholder="Repetir Senha Nova" inverted  onChange={handleChange} />
-                </Form.Group>
-                <Button positive type="submit" icon="send" content="Atualizar Senha" />
-            </Form>
-            <Divider inverted />
-            <Header inverted>Excluir Conta</Header>
-            <Button negative fluid icon="trash" content="Exlcuir Conta" onClick={handleDelete} />
+        <Container fluid textAlign="center">
+            <Grid inverted centered textAlign="center" celled="internally" columns={3}>
+                <Grid.Row>
+                    <Grid.Column>
+                        {Object.keys(user).length < 0 ? 'Carregando...' : 
+                            <Statistic.Group size="mini" inverted text="center" horizontal>
+                                <Statistic>
+                                    <Statistic.Label>Seu Id: </Statistic.Label>
+                                    <Statistic.Value>{user.id}</Statistic.Value>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Label>E-Mail: </Statistic.Label>
+                                    <Statistic.Value>{email}</Statistic.Value>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Label>Data registro: </Statistic.Label>
+                                    <Statistic.Value><Moment format="DD/MM/YYYY">{user.createdAt}</Moment></Statistic.Value>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Value>
+                                        <Link to="/dashboard">
+                                            <Button color="teal" compact icon="arrow left" content="Voltar" />
+                                        </Link>
+                                    </Statistic.Value>
+                                </Statistic>
+                            </Statistic.Group>
+                        }
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Form onSubmit={ e => handleSubmit(e)}>
+                            <Header inverted>Atualizar Senha</Header>
+                            <Form.Group>
+                                <Input label="Senha" type="password" name="oldPassword" value={passForm.oldPassword} placeholder="Senha Atual" inverted  onChange={handleChange} />
+                            </Form.Group>
+                            <Form.Group>
+                                <Input type="password" icon="lock" iconPosition="left" name="newPassword" value={passForm.newPassword} placeholder="Senha Nova" inverted  onChange={handleChange} />
+                                <Input type="password" icon="lock open" iconPosition="left" name="newPassword2" value={passForm.newPassword2} placeholder="Repetir Senha Nova" inverted  onChange={handleChange} />
+                            </Form.Group>
+                            <Button positive type="submit" icon="send" content="Atualizar Senha" />
+                        </Form>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Header inverted>Excluir Conta</Header>
+                        <Button negative fluid icon="trash" content="Exlcuir Conta" onClick={handleDelete} />
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
         </Container>
     )
 }
