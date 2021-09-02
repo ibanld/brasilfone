@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { AuthProvider } from './context/authContext'
+import { UsersProvider } from './context/usersContext'
 import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
-  <React.StrictMode>
+  
+  <AuthProvider>
+  <UsersProvider>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </UsersProvider>
+  </AuthProvider>
+  
+  ,document.getElementById('root')
 );
