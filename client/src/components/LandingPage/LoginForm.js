@@ -18,9 +18,16 @@ function LoginForm() {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            const res = API.post('users/login', loginForm)
+            const res = await API.post('users/login', loginForm)
             if (res) {
-                console.log(res.data)
+                if (res.data === true) {
+                    const setToken = await API.post('auth', { email: loginForm.email })
+                    if (setToken) {
+                        console.log(setToken.data)
+                    }
+                } else {
+                    console.log(res.data.message)
+                }
             }
         } catch (err) {
             console.error(err)

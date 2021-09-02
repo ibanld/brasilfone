@@ -135,7 +135,7 @@ exports.loginUser = async (req,res) => {
         const findUser = await User.findOne( { where: {email: email }})
         if (findUser) {
             // If the Email is registered we check the password
-            const checkPassword = bcrypt.compareSync(password, findUser.senha)
+            const checkPassword = await bcrypt.compareSync(password, findUser.senha)
             if (checkPassword) {
                 // If the password is correct we authenticate the User
                 return res.send(true)
