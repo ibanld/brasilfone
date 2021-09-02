@@ -15,7 +15,7 @@ const LandingPage = () => {
                     {view ? <LoginForm /> : <RegisterForm /> }
                 <Divider />
                 <Button 
-                    color= { view ? 'orange' : 'pink' } 
+                    color= { view ? 'orange' : 'purple' } 
                     content={ view ? 'Cadastre-Se' : 'Faça seu Login' } 
                     onClick= { ()=> setView(!view) } 
                     fluid
