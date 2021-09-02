@@ -128,6 +128,18 @@ exports.deleteUser = async (req,res) => {
     }
 }
 
+exports.findByMail = async (req,res) => {
+    try {
+        const email = req.params.email
+        const getUser = await User.findOne({where: { email: email }})
+        if (getUser) {
+            return res.send(getUser)
+        }
+    } catch (err) {
+        return res.send({message: err.message})
+    }
+}
+
 exports.loginUser = async (req,res) => {
     try {
         const { email, password } = req.body

@@ -11,9 +11,9 @@ export default function Account() {
             newPassword: ''
         }
     })
-
+    const [user, setUser] = useState({})
     const { email, token } = useAuth()
-    const id = 2
+
     const handleChange = e => {
         setPassForm({
             ...passForm,
@@ -27,7 +27,7 @@ export default function Account() {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            const res = await API.put(`users/${id}`, passForm)
+            const res = await API.put(`users/${user.id}`, passForm)
             if (res) {
                 console.log(res.data)
             }
@@ -37,29 +37,40 @@ export default function Account() {
     }
 
     const getUser = async email => {
-        const myUser = await API.get(`users/email/${email}`)
+        const myUser = await API.get(`users/email/${email}`, {headers: {'x-auth-token': token}})
         if (myUser) {
-            console.log(myUser.data)
-            return myUser.data
+            setUser({
+                ...myUser.data
+            })
         }
     }
 
     useEffect(() => {
         getUser(email)
-    }, [email])
+    }, [])
 
     return (
         <Container text textAlign="center">
-            <Statistic.Group size="mini" inverted horizontal text="center">
-                <Statistic>
-                    <Statistic.Label>E-Mail: </Statistic.Label>
-                    <Statistic.Value>{email}</Statistic.Value>
-                </Statistic>
-                <Statistic>
-                    <Statistic.Label>Auth Token: </Statistic.Label>
-                    <Statistic.Value>{`${token.substring(0,65)}...`}</Statistic.Value>
-                </Statistic>
-            </Statistic.Group>
+            {Object.keys(user).lenght < 0 ? 'Carregando...' : 
+                <Statistic.Group size="mini" inverted text="center">
+                    <Statistic>
+                        <Statistic.Label>Seu Id: </Statistic.Label>
+                        <Statistic.Value>{user.id}</Statistic.Value>
+                    </Statistic>
+                    <Statistic>
+                        <Statistic.Label>E-Mail: </Statistic.Label>
+                        <Statistic.Value>{email}</Statistic.Value>
+                    </Statistic>
+                    <Statistic>
+                        <Statistic.Label>Data registro: </Statistic.Label>
+                        <Statistic.Value>{user.createdAt}</Statistic.Value>
+                    </Statistic>
+                    <Statistic>
+                        <Statistic.Label>Auth Token: </Statistic.Label>
+                        <Statistic.Value>{`${token.substring(0,50)}...`}</Statistic.Value>
+                    </Statistic>
+                </Statistic.Group>
+            }
             <Divider inverted />
             <Form onSubmit={ e => handleSubmit(e)}>
                 <p>Atualizar Senha</p>

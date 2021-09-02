@@ -31,6 +31,11 @@ router.post('/cadastre-se', users.addUser)
 //  @desc       Update user
 router.put('/:id', verifyToken, users.updateUser)
 
+//  @route      GET /api/users/email/:email
+//  @access     private
+//  @desc       Get User Account by Email
+router.get('/email/:email', verifyToken, users.findByMail)
+
 //  @route      DELETE /api/users/:id
 //  @access     private
 //  @desc       Delete User Account
