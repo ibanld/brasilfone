@@ -1,5 +1,6 @@
 import { Menu, Button, Icon } from 'semantic-ui-react'
 import { useAuth, useDispatchAuth } from '../context/authContext'
+import Alert from './Alert'
 
 const style = {
     backgroundColor: '#263859', 
@@ -16,6 +17,11 @@ const menuStyle = {
     backgroundColor: '#17223B'
 }
 
+const alertDiv = {
+    position: 'absolute',
+    width: '100%',
+    bottom: 1
+}
 export default function Layout({ children }) {
     const { isLogged } = useAuth()
     const dispatchAuth = useDispatchAuth()
@@ -41,6 +47,9 @@ export default function Layout({ children }) {
             </Menu>
             <div style={childrenStyle}>
                 { children }
+            </div>
+            <div style={alertDiv}>
+                <Alert />
             </div>
         </div>
     )
