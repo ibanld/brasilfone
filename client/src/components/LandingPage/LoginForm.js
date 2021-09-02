@@ -24,6 +24,10 @@ function LoginForm() {
                     const setToken = await API.post('auth', { email: loginForm.email })
                     if (setToken) {
                         console.log(setToken.data)
+                        setLoginForm({
+                            email: '',
+                            password: ''
+                        })
                     }
                 } else {
                     console.log(res.data.message)
