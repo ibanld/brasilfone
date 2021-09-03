@@ -25,7 +25,7 @@ export default function RouteDesc() {
         },
         login: {
             email: "helloWorld@email.com",
-            senha: "myregularpassword"
+            senha: "bomdia"
         },
         userId:{
             id: 1
@@ -75,7 +75,7 @@ export default function RouteDesc() {
             const res = await API.post('users/login', engForm)
             if (res) {
                 // If the API resolves TRUE we return 'true' else we return the message
-                setLoginRes(res.data && true ? 'true' : res.data.message)
+                setLoginRes(res.data === true ? 'true' : res.data.message)
                 setTimeout( ()=> {
                     setLoginRes('')
                 }, 6000)
