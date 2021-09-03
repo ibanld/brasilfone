@@ -27,18 +27,10 @@ const app = express()
 
 // Init Cors
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' ? "https://brasilfone.herokuapp.com" : "http://localhost:3000"
+    origin: "http://localhost:5000"
 }
 
 app.use(cors(corsOptions))
-
-app.use(function (req, res, next) {
-    res.setHeader(
-      'Content-Security-Policy',
-      "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"
-    );
-    next();
-  });
 
 // Init body parser
 app.use(bodyParser.json())
