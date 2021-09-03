@@ -27,7 +27,7 @@ exports.findOne = async (req, res) => {
         if (!user) {
            return res.send({ message: `Nao foi achado nenhum usuário com ID ${id}` })
         } else {
-           return res.send(user)
+           return res.send({ message: user.email })
         }
     } catch (err) {
       return res.send({message: 'There was an error retrieving the User'})

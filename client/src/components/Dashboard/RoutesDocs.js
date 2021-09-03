@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Label, Button, Divider, Header, Segment } from 'semantic-ui-react'
 import { JsonEditor as Editor } from 'jsoneditor-react'
+import API from '../../utils/axios'
 import 'jsoneditor-react/es/editor.min.css'
 
 // Labels for different CRUD operations
 function Get() {
     return (
-        <Label positive content="GET" />
+        <Label color="green" content="GET" />
     )
 }
 function Post() {
@@ -21,7 +22,7 @@ function Put() {
 }
 function Delete() {
     return (
-        <Label negative content="DELETE" />
+        <Label color="red" content="DELETE" />
     )
 }
 
@@ -38,13 +39,29 @@ const apiText = {
     paddingLeft: 25
 }
 // This Component will render the desired Route
-//  It receives the type of operaion (GET, POST, PUT, DELETED), the address to the API, a title and the function to handle the submit
-export default function RoutesDocs({ action, api, title, handler }) {
-    const [toAPI, setToApi] = useState({
-        email: "helloWorld@email.com",
-        password: "myregularpassword" 
-})
-
+//  Custom Component to handle different CRUD operations (More info in Documents section)
+export default function RoutesDocs({ action, api, title, json, handler, res, hiddeEditor, noAuthRoute }) {
+    const [toAPI, setToApi] = useState({})
+    const [noTokenRes, setNoTokenRes] = useState('')
+    
+    // Unathenticated route to API for all routes without token
+    const noTokenAPI = async () => {
+        try {
+            const res = await API.get('users')
+            if (res) {
+                setNoTokenRes(res.data.message)
+                setTimeout( ()=>
+                    setNoTokenRes('')
+                ,3000)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+useEffect(() => {
+    setToApi({...json})
+}, [json])
+console.log(json)
     return (
         <div style={routeDesc}>
             <Header as="h3" inverted>{title}</Header>
@@ -58,11 +75,20 @@ export default function RoutesDocs({ action, api, title, handler }) {
                 </Segment.Inline>
             </Segment>
             <Segment inverted style={editor}>
-                <Editor 
-                    value={toAPI}
-                    onChange={setToApi}
-                />
+                {!hiddeEditor && 
+                    <Editor 
+                        value={toAPI}
+                        onChange={setToApi}
+                    />
+                }
                 <Button positive content="Testar" onClick={ () => handler(toAPI)} />
+                {noAuthRoute &&
+                    <Button negative content="Rota sem Segurar" onClick={noTokenAPI} />
+                }
+            </Segment>
+            <Segment>
+                <strong>Resposta do Servidor: </strong>
+                {res}{noTokenRes}
             </Segment>
             <Divider />
         </div>
