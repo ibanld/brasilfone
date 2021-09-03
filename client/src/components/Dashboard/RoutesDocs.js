@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Label, Button, Divider, Header, Segment } from 'semantic-ui-react'
+import JSONInput from 'react-json-editor-ajrm';
+import locale    from 'react-json-editor-ajrm/locale/pt'
 import API from '../../utils/axios'
 
 // Labels for different CRUD operations
@@ -71,7 +73,16 @@ export default function RoutesDocs({ action, api, title, json, handler, res, hid
                 </Segment.Inline>
             </Segment>
             <Segment inverted style={editor}>
-                HERE GOES API
+                {!hiddeEditor && 
+                    <JSONInput
+                        id= {Date.now()}
+                        placeholder= { toAPI }
+                        locale= { locale }
+                        height= '100px'
+                        width= '100%'
+                        onChange={ e=> setToApi(e.jsObject)}
+                    />
+                }
                 <Button positive content="Testar" onClick={ () => handler(toAPI)} />
                 {noAuthRoute &&
                     <Button negative content="Rota sem Segurar" onClick={noTokenAPI} />
