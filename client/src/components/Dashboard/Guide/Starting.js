@@ -7,9 +7,9 @@ const bgColor = {
 export default function Starting() {
     return (
         <>
-            <Header as="h2" inverted>Començando</Header>
+            <Header as="h2" inverted>Começando</Header>
             <Header as="h3" inverted id="node">Comprovando Node</Header>
-                Em primeiro lugar verificamos se Node está instalado e qual é versão que temos de Node e NPM com os seguintes comandos:
+                Em primeiro lugar verificamos se Node está instalado e qual é a versão que temos de Node e NPM com os seguintes comandos:
             <Segment inverted>
                 <p>$ node -v </p>
                 <p>v14.5.5</p>
@@ -54,7 +54,7 @@ export default function Starting() {
                 <p>DB_HOST= (host da sua base de dados)</p>
                 <p>DB_URL= (URI da sua base de datos)</p>
                 <p>JWT_SECRET= thisIsASecretSenhaForJWT</p>
-                <p>Não modifique o valor de <strong>JWT_SECRET</strong> para poder fazer login con as contas já salvadas no banco de dados</p>
+                <p>Não modifique o valor de <strong>JWT_SECRET</strong> para poder fazer login com as contas já salvas no banco de dados</p>
             </Segment>
             <p>Você pode baixar uma cópia do Banco de Dados clicando em:</p>
             <Button type="button" color="orange" size="huge" content="Baixar Copia Database" icon="cloud download" href="/assets/database/brasilfone_challenge.sql"/>
@@ -63,12 +63,12 @@ export default function Starting() {
             <Segment inverted>
                 <p>$ npm run dev</p>
             </Segment>
-            Este aplicativo usa <strong>Concurrently</strong> para executar Servidor e Cliente ao mesmo tempo em modo de desenvolvimento, alêm disso <strong>Nodemon</strong> atualiza toda vez que salvamos alterações no código.
+            Este aplicativo usa <strong>Concurrently</strong> para executar Servidor e Cliente ao mesmo tempo em modo de desenvolvimento, alêm <strong>Nodemon</strong> atualiza toda vez que salvamos alterações no código.
             Agora, somente é necessário iniciar seu browser favorito e acessar o seguinte endereço: 
             <Segment inverted style={bgColor}>
                 <p>http://localhost:3000/</p>
-                <p>E-Mail: helloWorld@email.com</p>
-                <p>Senha: bomdia</p>
+                <p>E-Mail: brasilfone@email.com</p>
+                <p>Senha: desenvolvimento</p>
             </Segment>
             <Divider inverted />
         </>
