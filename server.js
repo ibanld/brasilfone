@@ -27,7 +27,7 @@ const app = express()
 
 // Init Cors
 const corsOptions = {
-    origin: "https://brasilfone.herokuapp.com/"
+    origin: "https://localhost:3000"
 }
 
 app.use(cors(corsOptions))
