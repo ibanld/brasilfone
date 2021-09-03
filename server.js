@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const db = require('./config/db')
-const helmet = require('helmet')
 require('dotenv').config()
 const app = express()
 
@@ -16,21 +15,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.use(
-    helmet.contentSecurityPolicy({
-      directives: {
-        defaultSrc: ["'self'"],
-        connectSrc: ["'self'"],
-        frameSrc: ["'self'"],
-        childSrc: ["'self'"],
-        scriptSrc: ["'self'"],
-        styleSrc: ["'self'"],
-        fontSrc: ["'self'"],
-        imgSrc: ["'self'"],
-        baseUri: ["'self'"],
-      },
-    })
-  )
+app.use(function (req, res, next) {
+    res.setHeader(
+      'Content-Security-Policy',
+      "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"
+    );
+    next();
+  });
 
 // Init body parser
 app.use(bodyParser.json())
