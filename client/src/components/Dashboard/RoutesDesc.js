@@ -17,7 +17,7 @@ const container = {
 
 export default function RouteDesc() {
 
-    // Custom requests to APIs
+    // Initial objects for requests to APIs
     const objects = {
         register: {
             email: "helloWorld@email.com",
