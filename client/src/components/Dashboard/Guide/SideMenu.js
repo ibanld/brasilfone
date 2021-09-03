@@ -79,7 +79,7 @@ export default function SideMenu() {
                         <Menu.Item
                             name="Design de Frontend"
                             link
-                            href="#frotend"
+                            href="#frontend"
                         />
                     </Menu.Menu>
                 </Menu.Item>

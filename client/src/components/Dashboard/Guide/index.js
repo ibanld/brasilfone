@@ -3,11 +3,11 @@ import SideMenu from './SideMenu'
 import About from './About'
 import Starting from './Starting'
 import APIDocs from './APIDocs'
+import Development from './Development'
 
 const container = {
     backgroundColor: '#263859',
-    color: 'white',
-    heigth: 'auto'
+    color: 'white'
 }
 
 export default function Guide() {
@@ -21,6 +21,7 @@ export default function Guide() {
                     <About />
                     <Starting />
                     <APIDocs />
+                    <Development />
                 </Grid.Column>
             </Grid>
         </Container>

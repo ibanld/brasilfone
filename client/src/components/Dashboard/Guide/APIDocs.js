@@ -10,7 +10,7 @@ export default function APIDocs() {
         <>
             <Header inverted as="h2">Rotas do API</Header>
                 <p>Se você prefere testar e olhar as rotas diretamente faça click <Link to="/dashboard/routes">aquí</Link></p>
-                <Button type="button" color="orange" size="huge" link content="Baixar API para Postman" icon="rocket" href="/assets/postman/brasilfone_requests_postman.json" target="blank" />
+                <Button type="button" color="orange" size="huge" content="Baixar API para Postman" icon="rocket" href="/assets/postman/brasilfone_requests_postman.json" target="blank" />
             <Header inverted as="h3" id="public">Rotas Públicas</Header>
             As rotas públicas neste App nao precisam token de autorização. No código as rotas tem a seguinte definiçao:
             <Segment inverted style={bgColor}>
@@ -51,7 +51,7 @@ export default function APIDocs() {
                 Para fazer isso, nos precisamos usar uma funcion middleware chamada <strong>verifyToken</strong> para verificar que o token enviado desde o cliente está certo.
                 <br/> Pegamos o token enviado desde a petiçao em req.header com o nome <strong>x-auth-token</strong>
                 <br/> Se nao há token, nos retornamos que no foi achado nenhum token, se há um token usamos <strong>jwt.verify</strong> e se o token está certo, contiuamos o chamado de API com <strong>next()</strong>.
-                <br/> No <a href="#frontend">Design de Frontend</a> fica a informaçao sobre assinamento do tokens.
+                <br/> No <a href="#backend">Design de Backend</a> fica a informaçao sobre assinamento do tokens.
             </p>
             <Image src="/assets/imgs/jwtAuth.png" />
             <Divider />
