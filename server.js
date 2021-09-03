@@ -8,12 +8,8 @@ const app = express()
  // Connect to database
  db()
 
-// Init Cors
-const corsOptions = {
-    origin: "https://brasilfone.herokuapp.com"
-}
 
-app.use(cors(corsOptions))
+
 
 // Init body parser
 app.use(bodyParser.json())
