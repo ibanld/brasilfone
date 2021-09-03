@@ -34,10 +34,10 @@ export default function APIDocs() {
             </Segment>
             Um exemplo de controlador é este, que permite salvar os usuários no banco de dados
             <p>
-                Neste código pegamos o email e a senha desde o objeto enviado pela chamada à API com req.body, depois verificamos que há email válido e senhá.
-                <br/> Se temos e-mail e senha verificamos que o email não fique no banco de dados, se há um memso mail enviamos uma mensagem e cancelamos a operaçao. 
-                <br/> Se não há nenhum email igual, entao verificamos que o Email está no formato correto, se está certo criptografamos a senha com <strong>BCrypt</strong>
-                <br /> Finalmente, salvamos o novo usuário usando o driver Object.create(object) de <strong>Sequelize</strong>. Se todo foi certo, enviamos uma mensagem informando.
+            Neste código, pegamos o email e a senha desde o objeto enviado pela chamada à API com req.body, depois verificamos se há e-mail válido e senha.
+                <br/> Caso haja e-mail e senha válidos, verificamos se o e-mail não está cadastrado junto ao banco de dados. Caso haja um mesmo e-mail, enviamos uma mensagem e cancelamos a operação. 
+                <br/> Se não há nenhum e-mail igual, então verificamos se o e-mail está no formato correto. Caso esteja certo, criptografamos a senha com <strong>BCrypt</strong>
+                <br/> Finalmente, salvamos o novo usuário usando o driver Object.create(object) de <strong>Sequelize</strong>. Caso todo processo dê certo, enviamos uma mensagem informando o sucesso da operação.
             </p>
             <Image src="/assets/imgs/controllerCode.png" />
             <Header as="h3" inverted id="private">Rotas Privadas</Header>
@@ -51,7 +51,7 @@ export default function APIDocs() {
             <p>
                 Para fazer isso, nos precisamos usar uma funcion middleware chamada <strong>verifyToken</strong> para verificar que o token enviado desde o cliente está certo.
                 <br/> Pegamos o token enviado desde a petiçao em req.header com o nome <strong>x-auth-token</strong>
-                <br/> Se não há token, nos retornamos que no foi achado nenhum token, se há um token usamos <strong>jwt.verify</strong> e se o token está certo, contiuamos o chamado de API com <strong>next()</strong>.
+                <br/> Se não há token, nos retornamos que não foi achado nenhum token; se há um token usamos <strong>jwt.verify</strong> e se o token está certo, contiuamos o chamado de API com <strong>next()</strong>.
                 <br/> No <a href="#backend">Design de Backend</a> fica a informaçao sobre assinamento do tokens.
             </p>
             <Image src="/assets/imgs/jwtAuth.png" />

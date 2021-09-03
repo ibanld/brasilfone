@@ -11,27 +11,27 @@ export default function Development() {
             <Header as="h3" inverted id="backend">Design de Backend</Header>
             Estas são algumas das características mais notáveis ​​do design de back-end:
             <p>
-                Com <strong>Sequelize</strong>, mudamos o uso do banco de dados Postgress para Node e JavaScript, assim o workflow e similar a MongoDB.
+                Com <strong>Sequelize</strong>, mudamos o uso do banco de dados Postgres para Node e JavaScript, assim o workflow e similar a MongoDB.
                 <br/> Fazemos os modelos de Usuários da mesma forma que fazeriamos com <strong>mongoose</strong> para MongoDB. Definimos o modelo com:
             </p>
             <Segment inverted>
-            (coneçao ao banco de dados).define( nome de modelo, {'{ propiedad: { type: tipo de dado } }'})
+            (conexão ao banco de dados).define( nome de modelo, {'{ propiedad: { type: tipo de dado } }'})
             </Segment>
             <Image src="/assets/imgs/model.png" />
-            A coneçao com o banco de datos é assim:
+            A conexão com o banco de datos é assim:
             <Image src="/assets/imgs/db_connect.png" />
             <p>
                 <br/>Anteriormente falamos sobre os tokens, a assinatura dos tokens ocorre uma vez que o usuário logou corretamente, 
-                <br/>então uma chamada é feita para a rota / api / auth / e retorna um token com o qual o usuário pode acessar as rotas protegidas
+                <br/>então uma chamada é feita para a rota <strong>/api/auth</strong> e retorna um token com o qual o usuário pode acessar as rotas protegidas.
             </p>
             <Image src="/assets/imgs/jwtToken.png" />
             <p>
-                Com a função a seguir, criamos o token assinado usando o e-mail recebido da API e usando o segredo armazenado no arquivo .env
+                Com a função a seguir, criamos o token assinado usando o e-mail recebido da API e usando a senha armazenada no arquivo .env
             </p>
             <Segment inverted style={bgColor}>
                 jwt.sign({'propiedad: valor'}, chave secreta)
             </Segment>
-            Esta funçao retorna um token com um formato assim:
+            Esta função retorna um token com o seguinte formato:
             <Segment inverted style={bgColor}>
                 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNoZWVrb0BnbWFpbC5jb20iLCJpYXQiOjE2MzA1OTU4MjN9.16EHm8-DWfAXO7L2gf928K1da2TVy_Z55ECxH2H1ltg
             </Segment>

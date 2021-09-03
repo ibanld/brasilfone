@@ -97,11 +97,11 @@ Estas são algumas das características mais notáveis ​​do design de back-e
 Com Sequelize, mudamos o uso do banco de dados Postgress para Node e JavaScript, assim o workflow e similar a MongoDB.
 Fazemos os modelos de Usuários da mesma forma que fazeriamos com mongoose para MongoDB. Definimos o modelo com:
 
->(coneçao ao banco de dados).define( nome de modelo, { propiedad: { type: tipo de dado } })
+>(conexão ao banco de dados).define( nome de modelo, { propiedad: { type: tipo de dado } })
 
 ![model](https://raw.githubusercontent.com/ibanld/brasilfone/main/client/public/assets/imgs/model.png)
 
-A coneçao com o banco de datos é assim:
+A conexão com o banco de datos é assim:
 ![coneçao](https://raw.githubusercontent.com/ibanld/brasilfone/main/client/public/assets/imgs/db_connect.png)
 
 Anteriormente falamos sobre os tokens, a assinatura dos tokens ocorre uma vez que o usuário logou corretamente,
