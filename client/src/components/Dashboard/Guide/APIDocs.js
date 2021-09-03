@@ -9,29 +9,30 @@ export default function APIDocs() {
     return (
         <>
             <Header inverted as="h2">Rotas do API</Header>
-                <p>Se você prefere testar e olhar as rotas diretamente faça click <Link to="/dashboard/routes">aquí</Link></p>
+                <p>Se você preferir testar as rotas diretamente faça clique <Link to="/dashboard/routes">aquí</Link></p>
                 <Button type="button" color="orange" size="huge" content="Baixar API para Postman" icon="rocket" href="/assets/postman/brasilfone_requests_postman.json" target="blank" />
             <Header inverted as="h3" id="public">Rotas Públicas</Header>
-            As rotas públicas neste App não precisam token de autorização. No código as rotas tem a seguinte definiçao:
+            As rotas públicas neste App não precisam de token de autorização. No código, as rotas têm a seguinte definição:
             <Segment inverted style={bgColor}>
                 <p>@route      POST /api/users</p>
                 <p>@access     public</p>
                 <p>@desc       Create new user</p>
             </Segment>
-            <p>Em @route temos o methodo que vai utilizar e a rota, neste caso POST na rota /api/users</p>
-            <p>@access define quem vai poder ter acesso a rota, neste caso como é pública, todo o mundo tem acesso, assim poderam criar as suas contas de usuário</p>
-            <p>Com <strong>Express</strong> podemos usar router, importando express().Router</p>
+            <p>Em @route temos o método que vai se utilizar e a rota, neste caso, POST na rota /api/users
+                <br/>@access define quem vai poder ter acesso a rota, neste caso, como é pública, todos têm acesso, de modo a poder criar as suas contas de usuário
+                <br/>Com <strong>Express</strong> podemos usar router, importando express().Router   
+            </p>
             <Segment inverted style={bgColor}>
                 <p>const router = require('express').Router()</p>
                 <p>router.post('/cadastre-se', users.addUser)</p>
             </Segment>
-            A chamada para a rota no API tem os seguintes parámetros: 
+            A chamada para a rota no API tem os seguintes parâmetros: 
             <Segment inverted style={bgColor}>
                 <p>router.<strong>post/get/put/delete</strong>('endereço', funcion controlador)</p>
                 <p>Endereço: a rota onde nos fazemos nossa chamada ao API</p>
                 <p>Funcion controlador: o que acontecerá com os dados que receba a rota</p>
             </Segment>
-            Um exemplo de controlador e este que permite salvar os usuários no banco de dados
+            Um exemplo de controlador é este, que permite salvar os usuários no banco de dados
             <p>
                 Neste código pegamos o email e a senha desde o objeto enviado pela chamada à API com req.body, depois verificamos que há email válido e senhá.
                 <br/> Se temos e-mail e senha verificamos que o email não fique no banco de dados, se há um memso mail enviamos uma mensagem e cancelamos a operaçao. 
