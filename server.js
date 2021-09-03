@@ -27,10 +27,10 @@ app.use('/api/auth', require('./routes/api/auth.route'))
 // Serve static assets in production
 if(process.env.NODE_ENV === 'production') {
     // Set the static folder
-  app.use(express.static(path.join(__dirname, 'build')));
+  app.use(express.static(path.join(__dirname, 'public', 'build')));
 
   app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'build', 'index.html'));
   });
 }
 
