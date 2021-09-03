@@ -11,7 +11,7 @@ const app = express()
 
 // Init Cors
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' ? "https://brasilfone.herokuapp.com" : "http://localhost:3000"
+    origin: "https://brasilfone.herokuapp.com"
 }
 
 app.use(cors(corsOptions))
@@ -37,4 +37,4 @@ if(process.env.NODE_ENV === 'production') {
 
 const PORT = (process.env.PORT || 5000)
 
-app.listen(PORT, () => console.log(`Server up and running at PORT ${5000}`))
+app.listen(PORT, () => console.log(`Server up and running at PORT ${PORT}`))
