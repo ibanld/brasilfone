@@ -4,12 +4,17 @@ const cors = require('cors')
 const db = require('./config/db')
 require('dotenv').config()
 const app = express()
+const path = require('path')
 
  // Connect to database
  db()
 
-
-
+// Disable content security policy
+ app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+)
 
 // Init body parser
 app.use(bodyParser.json())
