@@ -7,7 +7,9 @@ const container = {
     width: '100%',
     heigth: '100%',
     justifyContent: 'space-evenly',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    flexWrap: 'wrap',
+    backgroundColor: '#263859'
 }
 const style = {
     backgroundColor: '#17223B'
