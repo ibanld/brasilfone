@@ -73,12 +73,7 @@ export default function RoutesDocs({ action, api, title, json, handler, res, hid
                 </Segment.Inline>
             </Segment>
             <Segment inverted style={editor}>
-                {!hiddeEditor && 
-                    <Editor 
-                        value={toAPI}
-                        onChange={setToApi}
-                    />
-                }
+                
                 <Button positive content="Testar" onClick={ () => handler(toAPI)} />
                 {noAuthRoute &&
                     <Button negative content="Rota sem Segurar" onClick={noTokenAPI} />
