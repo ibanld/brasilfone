@@ -6,6 +6,7 @@ import { Container, Table, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import { useDispatchAlert } from '../../context/alertContext'
+import Loading from '../Loader'
 
 const tableColor= {
     backgroundColor: '#17223B'
@@ -72,7 +73,7 @@ export default function Users() {
 
     return (
         <Container text>
-            {loading ? 'loading' : 
+            {loading ? <Loading /> : 
                 <Table inverted style={tableColor}>
                     <Table.Header>
                         <Table.Row>
