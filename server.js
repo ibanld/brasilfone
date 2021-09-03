@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const db = require('./config/db')
+const helmet = require('helmet')
 require('dotenv').config()
-
 const app = express()
 
  // Connect to database
@@ -11,10 +11,26 @@ const app = express()
 
 // Init Cors
 const corsOptions = {
-    origin: "https://brasilfone.herokuapp.com"
+    origin: process.env.NODE_ENV === 'production' ? "https://brasilfone.herokuapp.com" : "http://localhost:3000"
 }
 
 app.use(cors(corsOptions))
+
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: ["'self'"],
+        frameSrc: ["'self'"],
+        childSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        imgSrc: ["'self'"],
+        baseUri: ["'self'"],
+      },
+    })
+  )
 
 // Init body parser
 app.use(bodyParser.json())
