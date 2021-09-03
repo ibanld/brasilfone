@@ -2,11 +2,28 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const db = require('./config/db')
+const helmet = require('helmet')
 require('dotenv').config()
 const app = express()
 
  // Connect to database
  db()
+
+ // Set security policy with helmet
+ app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"], 
+          scriptSrc: ["'self'", "'unsafe-inline'"],
+          styleSrc: ["'self'"],
+          imgSrc: ["*", 'data:'],
+          connectSrc: ["'self'"],
+          frameSrc: ["'self'"],
+        },
+      }
+    })
+  );
 
 // Init Cors
 const corsOptions = {
