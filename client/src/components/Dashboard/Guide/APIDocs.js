@@ -12,7 +12,7 @@ export default function APIDocs() {
                 <p>Se você prefere testar e olhar as rotas diretamente faça click <Link to="/dashboard/routes">aquí</Link></p>
                 <Button type="button" color="orange" size="huge" content="Baixar API para Postman" icon="rocket" href="/assets/postman/brasilfone_requests_postman.json" target="blank" />
             <Header inverted as="h3" id="public">Rotas Públicas</Header>
-            As rotas públicas neste App nao precisam token de autorização. No código as rotas tem a seguinte definiçao:
+            As rotas públicas neste App não precisam token de autorização. No código as rotas tem a seguinte definiçao:
             <Segment inverted style={bgColor}>
                 <p>@route      POST /api/users</p>
                 <p>@access     public</p>
@@ -34,8 +34,8 @@ export default function APIDocs() {
             Um exemplo de controlador e este que permite salvar os usuários no banco de dados
             <p>
                 Neste código pegamos o email e a senha desde o objeto enviado pela chamada à API com req.body, depois verificamos que há email válido e senhá.
-                <br/> Se temos e-mail e senha verificamos que o email nao fique no banco de dados, se há um memso mail enviamos uma mensagem e cancelamos a operaçao. 
-                <br/> Se nao há nenhum email igual, entao verificamos que o Email está no formato correto, se está certo criptografamos a senha com <strong>BCrypt</strong>
+                <br/> Se temos e-mail e senha verificamos que o email não fique no banco de dados, se há um memso mail enviamos uma mensagem e cancelamos a operaçao. 
+                <br/> Se não há nenhum email igual, entao verificamos que o Email está no formato correto, se está certo criptografamos a senha com <strong>BCrypt</strong>
                 <br /> Finalmente, salvamos o novo usuário usando o driver Object.create(object) de <strong>Sequelize</strong>. Se todo foi certo, enviamos uma mensagem informando.
             </p>
             <Image src="/assets/imgs/controllerCode.png" />
@@ -50,7 +50,7 @@ export default function APIDocs() {
             <p>
                 Para fazer isso, nos precisamos usar uma funcion middleware chamada <strong>verifyToken</strong> para verificar que o token enviado desde o cliente está certo.
                 <br/> Pegamos o token enviado desde a petiçao em req.header com o nome <strong>x-auth-token</strong>
-                <br/> Se nao há token, nos retornamos que no foi achado nenhum token, se há um token usamos <strong>jwt.verify</strong> e se o token está certo, contiuamos o chamado de API com <strong>next()</strong>.
+                <br/> Se não há token, nos retornamos que no foi achado nenhum token, se há um token usamos <strong>jwt.verify</strong> e se o token está certo, contiuamos o chamado de API com <strong>next()</strong>.
                 <br/> No <a href="#backend">Design de Backend</a> fica a informaçao sobre assinamento do tokens.
             </p>
             <Image src="/assets/imgs/jwtAuth.png" />

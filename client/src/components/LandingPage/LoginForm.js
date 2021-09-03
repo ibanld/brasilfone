@@ -42,7 +42,7 @@ function LoginForm() {
                             payload: {
                                 color: 'green',
                                 icon: 'thumbs up',
-                                header: 'Login foi Certo!', 
+                                header: 'Login realizado com sucesso!', 
                                 content: `Oi! ${loginForm.email}, Tudo bem?`,
     
                             }
@@ -59,7 +59,7 @@ function LoginForm() {
                         payload: {
                             color: 'red',
                             icon: 'thumbs down',
-                            header: 'Algo nao foi certo!', 
+                            header: 'Algo não deu certo!', 
                             content: res.data.message,
 
                         }

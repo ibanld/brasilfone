@@ -25,7 +25,7 @@ export default function Starting() {
             <Segment inverted>
                 <p>$ npm install -g n</p>
             </Segment>
-            Se você nao tem Node no seu computuador pode fazer click no logo de Node <a href="https://nodejs.org/en/download/" target="blank"><Icon inverted size="large" link name="node js"></Icon></a>
+            Se você não tem Node no seu computuador pode fazer click no logo de Node <a href="https://nodejs.org/en/download/" target="blank"><Icon inverted size="large" link name="node js"></Icon></a>
             <Header as="h3" inverted id="install">Baixar e Instalar repositório</Header>
             Para baixar o repositório desde seu computuador so precisa de usar a Consola do seu sistema operacional:
             Primeiro você tem que comprobar si tem git bash no seu computuador:
@@ -55,7 +55,7 @@ export default function Starting() {
                 <p>DB_HOST= (host da sua base de dados)</p>
                 <p>DB_URL= (URI da sua base de datos)</p>
                 <p>JWT_SECRET= thisIsASecretSenhaForJWT</p>
-                <p>Nao modifique o valor de <strong>JWT_SECRET</strong> para poder fazer login con as contas já salvadas no banco de dados</p>
+                <p>Não modifique o valor de <strong>JWT_SECRET</strong> para poder fazer login con as contas já salvadas no banco de dados</p>
             </Segment>
             <p>Você pode baixar uma copia do Banco de Dados fazendo click e baixar:</p>
             <Button type="button" color="orange" size="huge" content="Baixar Copia Database" icon="cloud download" href="/assets/database/brasilfone_challenge.sql"/>

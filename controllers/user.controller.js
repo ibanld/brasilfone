@@ -11,7 +11,7 @@ exports.findAll = async (req, res) => {
     try {
         const users = await User.findAll()
         if (!users) {
-          return  res.send({message: 'Nao foram achados usuários'})
+          return  res.send({message: 'Não foram achados usuários'})
         } else {
           return  res.send(users)
         }
@@ -25,7 +25,7 @@ exports.findOne = async (req, res) => {
         const id = req.params.id
         const user = await User.findByPk(id)
         if (!user) {
-           return res.send({ message: `Nao foi achado nenhum usuário com ID ${id}` })
+           return res.send({ message: `Não foi achado nenhum usuário com ID ${id}` })
         } else {
            return res.send({ message: user.email })
         }
@@ -62,10 +62,10 @@ exports.addUser = async (req, res) => {
                     })
                     // Inform User was created
                     if (saveUser) {
-                        return res.send({ message: `User with E-Mail: ${email} was created` })
+                        return res.send({ message: `Usuário com E-Mail: ${email} foi criado` })
                     }
                 } else {
-                    return res.send({ message: `${email} is not a valid E-Mail!` })
+                    return res.send({ message: `${email} não é um E-Mail válido!` })
                 }
             }
         } 
@@ -152,11 +152,11 @@ exports.loginUser = async (req,res) => {
                 // If the password is correct we authenticate the User
                 return res.send(true)
             } else {
-               return res.send({ message: 'Senha Errada. Tenta de Novo' })
+               return res.send({ message: 'Senha Errada. Tente Novamente' })
             }
         } else {
             // If the Email isn't registered in the DB, we send the redirect property so the Front-End activates/redirects to Register Form/Page
-            return res.send({ message: `O E-Mail ${email} nao está cadastrado`, redirect: true })
+            return res.send({ message: `O E-Mail ${email} não está cadastrado`, redirect: true })
         }
     } catch (err) {
         return res.send({message: err.message})

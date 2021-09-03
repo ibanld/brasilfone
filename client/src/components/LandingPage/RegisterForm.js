@@ -55,7 +55,7 @@ function RegisterForm() {
                         color: 'red',
                         icon: 'close',
                         header: 'Senha Errada!', 
-                        content: 'As senhas nao concordam',
+                        content: 'As senhas não concordam',
 
                     }
                 })

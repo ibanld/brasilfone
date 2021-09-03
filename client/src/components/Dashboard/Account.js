@@ -62,7 +62,7 @@ export default function Account() {
                         color: 'red',
                         icon: 'close',
                         header: 'Senha Errada!', 
-                        content: 'As senhas nao concordam',
+                        content: 'As senhas não concordam',
 
                     }
                 })
@@ -167,7 +167,7 @@ export default function Account() {
                     </Grid.Column>
                     <Grid.Column>
                         <Header inverted>Excluir Conta</Header>
-                        <Button negative fluid icon="trash" content="Exlcuir Conta" onClick={handleDelete} />
+                        <Button negative fluid icon="trash" content="Excluir Conta" onClick={handleDelete} />
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
