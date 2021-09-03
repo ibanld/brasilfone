@@ -1,11 +1,15 @@
 const { Sequelize } = require('sequelize')
 const User = require('../models/User')
+require('dotenv').config()
 
 // Connect to Database
 const db = async () => {
-  const sequelize = new Sequelize(process.env.DB_URL)
-    try {
-      // Syncronizing Tables with Database
+  try {
+    const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+          host: process.env.DB_HOST ,
+          dialect: 'postgres'
+        })
+    // Syncronizing Tables with Database
       await User.sync()
 
       // Authenticate database
