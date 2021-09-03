@@ -2,6 +2,7 @@ import { Container, Grid } from 'semantic-ui-react'
 import SideMenu from './SideMenu'
 import About from './About'
 import Starting from './Starting'
+import APIDocs from './APIDocs'
 
 const container = {
     backgroundColor: '#263859',
@@ -19,6 +20,7 @@ export default function Guide() {
                 <Grid.Column width={13}>
                     <About />
                     <Starting />
+                    <APIDocs />
                 </Grid.Column>
             </Grid>
         </Container>
