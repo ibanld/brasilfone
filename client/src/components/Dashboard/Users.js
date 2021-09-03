@@ -74,7 +74,7 @@ export default function Users() {
     return (
         <Container text>
             {loading ? <Loading /> : 
-                <Table inverted style={tableColor}>
+                <Table inverted style={tableColor} unstackable collapsing>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>ID</Table.HeaderCell>
