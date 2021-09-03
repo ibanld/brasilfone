@@ -48,7 +48,7 @@ exports.addUser = async (req, res) => {
             // Check if user is already in the database
             const myUser = await User.findOne({where: { email: email }})
             if (myUser) {
-                return res.send({ message: `User with E-Mail ${email} already exists`})
+                return res.send({ message: `Usuário com E-Mail ${email} já está cadastrado`})
             } else {
                 // Check if E-Mail provided has a valid format
                 const validEmail = validateMail(email)
