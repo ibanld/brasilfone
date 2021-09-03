@@ -2,9 +2,8 @@ import { Header, Divider, List, Icon} from 'semantic-ui-react'
 
 export default function About() {
     return (
-        <div>
+        <>
             <Header inverted as="h2">Sobre o App</Header>
-            <Divider inverted />
             <Header inverted as="h3" id="stack">Stack</Header>
                 Este aplicativo foi desenvolvido usando a seguinte stack:
                 <List bulleted>
@@ -31,6 +30,7 @@ export default function About() {
                     <Icon link size="large" target="_blank" inverted name="github" />
                 </a>
             </p>
-        </div>
+            <Divider inverted />
+        </>
     )
 }
