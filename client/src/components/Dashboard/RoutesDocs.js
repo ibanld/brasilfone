@@ -26,6 +26,7 @@ function Delete() {
     )
 }
 
+// CSS Styles 
 const routeDesc = {
     backgroundColor: '#17223B',
     width: '50%', 
@@ -38,10 +39,10 @@ const editor = {
 const apiText = {
     paddingLeft: 25
 }
-// This Component will render the desired Route
+// This Component will render the Route information with testing options
 //  Custom Component to handle different CRUD operations (More info in Documents section)
 export default function RoutesDocs({ action, api, title, json, handler, res, hiddeEditor, noAuthRoute }) {
-    const [toAPI, setToApi] = useState({})
+    const [toAPI, setToApi] = useState(json)
     const [noTokenRes, setNoTokenRes] = useState('')
     
     // Unathenticated route to API for all routes without token
@@ -58,10 +59,7 @@ export default function RoutesDocs({ action, api, title, json, handler, res, hid
             console.error(err)
         }
     }
-useEffect(() => {
-    setToApi({...json})
-}, [json])
-console.log(json)
+
     return (
         <div style={routeDesc}>
             <Header as="h3" inverted>{title}</Header>
