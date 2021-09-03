@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Label, Button, Divider, Header, Segment } from 'semantic-ui-react'
-import { JsonEditor as Editor } from 'jsoneditor-react'
 import API from '../../utils/axios'
-import 'jsoneditor-react/es/editor.min.css'
 
 // Labels for different CRUD operations
 function Get() {
