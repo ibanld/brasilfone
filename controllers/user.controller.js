@@ -81,8 +81,8 @@ exports.updateUser = async (req, res) => {
         const id = req.params.id
         // Action: what are we going to update?
         // Payload: the new value we are saving
-        const { action, payload } = req.body
-        switch (action) {
+        const { type, payload } = req.body
+        switch (type) {
             case 'UPDATE_EMAIL':
                 const email = { email: payload }
                 const updateEmail = await User.update(email, {where: { id: id } })

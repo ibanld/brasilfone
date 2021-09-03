@@ -20,12 +20,12 @@ export default function RouteDesc() {
     // Initial objects for requests to APIs
     const objects = {
         register: {
-            email: "helloWorld@email.com",
-            password: "myregularpassword" 
+            email: "novousuario@usuarios.com.br",
+            senha: "umasenhasegura" 
         },
         login: {
             email: "helloWorld@email.com",
-            password: "myregularpassword"
+            senha: "myregularpassword"
         },
         userId:{
             id: 1
@@ -49,8 +49,12 @@ export default function RouteDesc() {
     // Call to API routes for challenge requirements
         // Register User from Routes Docs
     const registerUser = async (toPost) => {
+        const engForm = {
+            email: toPost.email,
+            password: toPost.senha
+        }
         try {
-            const res = await API.post('users/cadastre-se', toPost)
+            const res = await API.post('users/cadastre-se', engForm)
             if (res) {
                 setRegisterRes(res.data.message)
                 setTimeout( ()=> 
@@ -63,8 +67,12 @@ export default function RouteDesc() {
     }
         // Login User from Routes Docs
     const loginUser = async (toLogin) => {
+        const engForm = {
+            email: toLogin.email,
+            password: toLogin.senha
+        }
         try {
-            const res = await API.post('users/login', toLogin)
+            const res = await API.post('users/login', engForm)
             if (res) {
                 // If the API resolves TRUE we return 'true' else we return the message
                 setLoginRes(res.data && true ? 'true' : res.data.message)
@@ -110,7 +118,7 @@ export default function RouteDesc() {
         try {
             // Build password object for the PUT request
             const updatePass = {
-                action: 'UPDATE_PASSWORD',
+                type: 'UPDATE_PASSWORD',
                 payload: {
                     oldPassword: toUpdate.antigaSenha,
                     newPassword: toUpdate.novaSenha

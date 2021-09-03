@@ -9,7 +9,7 @@ import checkPassword from '../../utils/checkPassword'
 
 export default function Account() {
     const [passForm, setPassForm] = useState({
-        action: 'UPDATE_PASSWORD',
+        type: 'UPDATE_PASSWORD',
         payload: {
             oldPassword: '',
             newPassword: '',
