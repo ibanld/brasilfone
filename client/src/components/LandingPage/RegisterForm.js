@@ -81,7 +81,7 @@ function RegisterForm() {
             <Form.Input>
                 <Input type="password" name="repeatPassword" icon="lock" placeholder="Repita a Senha" value={registerForm.repeatPassword} inverted onChange={ e => handleChange(e) } />
             </Form.Input>
-            <Button positive type="submit" icon="save" content="Cadastre-se!" fluid compact/>
+            <Button positive type="submit" icon="send" content="Cadastre-se!" fluid compact/>
         </Form>
     )
 }
