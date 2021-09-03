@@ -1,20 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const cors = require('cors')
 const db = require('./config/db')
 require('dotenv').config()
-const helmet = require('helmet')
 const app = express()
 
  // Connect to database
  db()
-
-// Disable content security policy
- app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  })
-)
 
 // Init body parser
 app.use(bodyParser.json())
